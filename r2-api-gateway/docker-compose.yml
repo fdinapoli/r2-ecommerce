@@ -1,0 +1,14 @@
+gateway:
+  build: ./r2-api-gateway
+  container_name: r2-gateway
+  restart: always
+  depends_on:
+    eureka:
+      condition: service_healthy
+  ports:
+    - "8080:8080"
+  environment:
+    - SPRING_PROFILES_ACTIVE=docker
+    - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/  # ← usa container_name
+  networks:
+    - backend
