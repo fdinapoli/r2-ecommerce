@@ -12,6 +12,29 @@ spring:
           enabled: true
           lower-case-service-id: true
 
+  routes:
+
+    - id: users-api
+      uri: lb://r2-users-api
+      predicates:
+        - Path=/api/users/**
+      filters:
+        - StripPrefix=1
+
+    - id: products-api
+      uri: lb://r2-products-api
+      predicates:
+        - Path=/api/products/**
+      filters:
+        - StripPrefix=1
+
+    - id: orders-api
+      uri: lb://r2-orders-api
+      predicates:
+        - Path=/api/orders/**
+      filters:
+        - StripPrefix=1
+
 eureka:
   client:
     service-url:

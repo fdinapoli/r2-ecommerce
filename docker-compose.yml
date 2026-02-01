@@ -56,6 +56,27 @@ services:
     networks:
       - backend
 
+  users-api:
+    build:
+      context: ./r2-users-api
+      dockerfile: Dockerfile
+    container_name: r2-users-api
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+      eureka:
+        condition: service_healthy
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://r2-postgres:5432/${POSTGRES_DB}
+      - SPRING_DATASOURCE_USERNAME=${POSTGRES_USER}
+      - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD}
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SERVER_PORT=8080
+    networks:
+      - backend
+
 volumes:
   postgres_data:
 

@@ -11,9 +11,9 @@
 
     <modules>
         <!--<module>r2-commons</module>
-        <module>r2-users-api</module>
         <module>r2-products-api</module>
         <module>r2-orders-api</module>-->
+        <module>r2-users-api</module>
         <module>r2-api-gateway</module>
         <module>eureka-server</module>
     </modules>
