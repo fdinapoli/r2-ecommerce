@@ -4,6 +4,8 @@ spring:
     enabled: true
 
 eureka:
+  instance:
+    hostname: users-api
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka/
